@@ -382,6 +382,36 @@
   }
 }
 
+/* ---------- CAREER TIMELINE ---------- */
+.roleBlock {
+  margin-bottom: 2.4rem;
+}
+.roleBlock:last-child {
+  margin-bottom: 0;
+}
+.roleTitle {
+  font-family: var(--font-fraunces), serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin: 0 0 0.3rem;
+  color: var(--ink);
+}
+.roleMeta {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--indigo);
+  margin-bottom: 0.6rem;
+}
+.roleBody {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 60ch;
+}
+
 /* ---------- TYPE-AS-MEANING MOMENT ---------- */
 .typeMoment {
   padding: 10vh 8vw;
