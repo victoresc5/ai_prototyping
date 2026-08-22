@@ -24,7 +24,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Victor — More Than the Job",
   description:
-    "Victor's \"Introduce Yourself, Visually\" homepage for the AI Prototyping cohort — Bauhaus-refined grid (career) vs. organic disruption (obsessions).",
+    "Victor's personal homepage — a Bauhaus-refined bento grid weaving career and life together, a career timeline, and one closing line.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

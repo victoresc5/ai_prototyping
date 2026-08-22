@@ -132,6 +132,9 @@
   max-width: 21ch;
 }
 .name em {
+  display: inline-block;
+  font-size: clamp(1.8rem, 5.5vw, 4.5rem);
+  line-height: 1.1;
   font-style: italic;
   font-weight: 500;
   color: var(--clay);
@@ -274,7 +277,7 @@
   background: var(--indigo);
 }
 .tileFill.tileClay {
-  background: var(--clay);
+  background: var(--clay-fill);
 }
 .tileFill .tileKicker {
   color: var(--cream-2) !important;
@@ -323,18 +326,6 @@
   margin: 0;
 }
 
-.tileRole {
-  grid-column: span 12;
-  padding: 2.6rem 2.2rem;
-}
-.tileRole .tileKicker {
-  margin-bottom: 0.5rem;
-}
-.tileRole .tileTitle {
-  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
-  margin-bottom: 0;
-}
-
 .tGopher {
   grid-column: span 5;
   --tilt: -1deg;
@@ -375,10 +366,6 @@
 @media (max-width: 780px) {
   .tile {
     grid-column: span 12 !important;
-    transform: none !important;
-  }
-  .tile:hover {
-    transform: translateY(-2px) !important;
   }
 }
 
@@ -435,7 +422,7 @@
   font-family: var(--font-fraunces), serif;
   font-weight: 600;
   font-style: normal;
-  font-size: clamp(3rem, 11vw, 9rem);
+  font-size: clamp(1.8rem, 5.5vw, 4.5rem);
   line-height: 0.95;
   margin: 0.3rem 0;
   background: linear-gradient(100deg, var(--clay-soft) 0%, var(--clay) 50%, var(--indigo) 100%);

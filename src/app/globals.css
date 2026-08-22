@@ -9,6 +9,11 @@
   --indigo-soft: #5a6690;
   --clay: #b5502e;
   --clay-soft: #d98357;
+  /* Darker than --clay specifically for solid fills: --clay's mid luminance
+     only clears ~4.0:1 against --cream-2 body text (WCAG AA needs 4.5:1 for
+     normal text). --clay itself stays untouched everywhere else (borders,
+     accents, gradients) so this only fixes the one failing combination. */
+  --clay-fill: #8c3e24;
   --line: #c9bfa9;
 
   --background: var(--cream);

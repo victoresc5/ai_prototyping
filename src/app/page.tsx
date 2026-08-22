@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import styles from "./page.module.css";
 import { Icon, type IconName } from "./icons";
 import { Timeline } from "@/components/ui/timeline";
@@ -104,7 +104,7 @@ type RoleEntry = {
   role: string;
   org: string;
   meta: string;
-  body: string;
+  body?: string;
 };
 
 function RoleBlock({ role, org, meta, body }: RoleEntry) {
@@ -114,74 +114,78 @@ function RoleBlock({ role, org, meta, body }: RoleEntry) {
       <div className={styles.roleMeta}>
         {org} · {meta}
       </div>
-      <p className={styles.roleBody}>{body}</p>
+      {body ? <p className={styles.roleBody}>{body}</p> : null}
     </div>
   );
 }
 
-const careerTimeline = [
+type CareerEra = {
+  title: string;
+  accent: "indigo" | "clay";
+  content: ReactNode;
+};
+
+const careerTimeline: CareerEra[] = [
   {
     title: "2012–2015",
+    accent: "indigo",
     content: (
       <>
         <RoleBlock
-          role="Art Director"
+          role="Art Director → Web Editor"
           org="The Daily Aztec, San Diego State University"
-          meta="Jun 2012 – May 2013"
-          body="Directed a team of seven production designers on layout for SDSU's student-run newspaper, art-directing 116 issues and leading a full redesign from concept to implementation."
-        />
-        <RoleBlock
-          role="Web Editor"
-          org="The Daily Aztec, San Diego State University"
-          meta="Jan 2013 – May 2014"
-          body="Led the shift from daily to biweekly print with expanded online-exclusive content, moved the paper's workflow onto WordPress, and grew social following 20%."
+          meta="Jun 2012 – May 2014"
+          body="Directed a team of seven designers across 116 issues, then led the shift from daily to biweekly print with expanded online coverage and a move to WordPress."
         />
         <RoleBlock
           role="Graphic Design / Marketing Assistant"
           org="Dye Precision, Inc."
           meta="Apr 2013 – May 2014"
-          body="Designed seasonal catalogs for Pro-Tec, Dye Snow, and Dye Paintball, including brand-recreation work following Pro-Tec's acquisition from Vans."
+          body="Designed seasonal catalogs for Pro-Tec, Dye Snow, and Dye Paintball."
         />
         <RoleBlock
           role="Junior UI/UX Designer"
           org="Parallel 6"
           meta="Jan 2014 – Nov 2015"
-          body="Took client web and mobile products from wireframes to high-fidelity prototypes alongside marketing campaign and print work."
+          body="Took client web and mobile products from wireframes to high-fidelity prototypes."
         />
       </>
     ),
   },
   {
     title: "2015–2018",
+    accent: "clay",
     content: (
       <RoleBlock
         role="Visual Designer"
         org="Renovate America"
         meta="Nov 2015 – Dec 2018"
-        body="Helped replatform renovateamerica.com into a componentized system, contributed creative direction to a full company rebrand, and partnered on an integrated radio/paid/social summer campaign."
+        body="Replatformed renovateamerica.com into a componentized system and contributed to a full company rebrand, including an integrated summer marketing campaign."
       />
     ),
   },
   {
     title: "2019–2020",
+    accent: "indigo",
     content: (
       <RoleBlock
         role="Product Visual Designer (Contract)"
         org="Intuit"
         meta="Jan 2019 – Aug 2020"
-        body="Delivered end-to-end visual design across Turbo, Mint, and Marketplace, and extended the Intuit Design System's mobile pattern library across teams."
+        body="End-to-end visual design across Turbo, Mint, and Marketplace, extending the Intuit Design System's mobile pattern library."
       />
     ),
   },
   {
     title: "2020–2022",
+    accent: "clay",
     content: (
       <>
         <RoleBlock
           role="Senior Product Designer"
           org="Intuit"
           meta="Aug 2020 – Jun 2022"
-          body="End-to-end design lead for Mint Coach, Intuit's first expert-assisted financial coaching service, from 0→1 through pilot and scale — ran 47 design prototypes across the product lifecycle and founded the team that built the Mint Design System Figma library."
+          body="Design lead for Mint Coach, Intuit's first expert-assisted financial coaching product, from 0→1 through pilot and scale — 47 prototypes deep, and founder of the team that built the Mint Design System Figma library."
         />
         <RoleBlock
           role="Principal Product Designer"
@@ -194,24 +198,21 @@ const careerTimeline = [
   },
   {
     title: "2022–2026",
+    accent: "indigo",
     content: (
       <RoleBlock
         role="Senior → Staff Product Designer II"
         org="Credit Karma"
         meta="Jul 2022 – Jun 2026"
-        body="Designed the Net Worth feature set and Prime-segment experiences, helped integrate Intuit Assist and onboard 1.5M+ migrated Mint members, then founded and staffed Credit Karma's first Product Futures Team — a long-horizon 0→1 innovation function under Intuit's AI-first mandate that shaped shipped features like Left After Bills and put concepts including a debt-management tool and a paycheck agent on the roadmap."
+        body="Designed the Net Worth feature set and Prime-segment experiences, then led Credit Karma's first Product Futures Team — shaping shipped features like Left After Bills and putting concepts like a debt-management tool and a paycheck agent on the roadmap."
       />
     ),
   },
   {
     title: "2026 — Now",
+    accent: "clay",
     content: (
-      <RoleBlock
-        role="Senior Staff Product Designer"
-        org="Intuit"
-        meta="Jun 2026 – Present"
-        body="Currently scaling Free Credit Karma Tax."
-      />
+      <RoleBlock role="Senior Staff Product Designer" org="Intuit" meta="Jun 2026 – Present" />
     ),
   },
 ];
@@ -260,11 +261,10 @@ export default function Home() {
           <h1 className={styles.name}>
             Victor
             <br />
-            <em>runs a rigorous practice —and a losing garden.</em>
+            <em>runs a rigorous practice — and a losing garden.</em>
           </h1>
           <p className={styles.heroSub}>
-            Senior Staff Product Designer. Founder of a Product Design Futures team. Everything
-            else on this page is the evidence.
+            Senior Staff Product Designer at Intuit. Currently scaling Free Credit Karma Tax.
           </p>
         </div>
         <div className={styles.scrollCue}>
@@ -287,15 +287,6 @@ export default function Home() {
       </div>
 
       <div className={styles.bento} ref={bentoRef}>
-        <div
-          className={`${styles.tile} ${styles.tileIndigo} ${styles.tileFill} ${styles.tileRole}`}
-          data-tile
-        >
-          <span className={styles.tileKicker}>Currently</span>
-          <h3 className={styles.tileTitle}>Senior Staff Product Designer, Intuit</h3>
-          <p className={styles.tileBody}>Currently scaling Free Credit Karma Tax.</p>
-        </div>
-
         {tiles.map((tile) => (
           <div
             key={tile.key}
@@ -330,9 +321,7 @@ export default function Home() {
       </section>
 
       <footer className={styles.footer}>
-        <div className={styles.footLeft}>
-          V.01 — INTRODUCE YOURSELF, VISUALLY — AI PROTOTYPING COHORT, AUG 2026
-        </div>
+        <div className={styles.footLeft}>VICTOR ESCOTO — AI PROTOTYPING COHORT, AUG 2026</div>
         <div className={styles.footRight}>still growing — like everything else here</div>
       </footer>
     </>
